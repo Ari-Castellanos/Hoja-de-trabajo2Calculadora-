@@ -1,67 +1,54 @@
-import java.util.ArrayList;
-
-public class Calculadora<T> implements IPostfixCalculator<T> {
-
+public class Calculadora<T> implements IPostfixCalculator {
+    private StackHandmade<int> numeros = new StackHandmade<int>();
 
     public Calculadora() {
 
     }
 
-    /**
-     * Es el metodo que calcula
-     * @param postfix_expression calculo de enteros en postfix
-     * @return resultado
-     * @throws Exception
-     */
-    @Override
-    public int Calculate(ArrayList<T> postfix_expression) throws Exception{
-
+    public int Calculate(java.util.ArrayList<T> postfix_expression) throws Exception{
         int respuesta = 0;
-        StackHandmade<Integer> numeros = new StackHandmade<Integer>();
+        try{
+            for (T u : postfix_expression){
+                if (u instanceof String){
+                    char v = ((String) u).charAt(0);
+                }
+                else{
+                    char v = (char) u;
+                }
+                if ( v.isDigit() ){
+		            numeros.push(Integer.parseInt(v));
+                }
+                switch (v){
+                    case "+":
+                        // algo
+                        break;
 
+                    case "-":
+                        // algo
+                        break;
 
-        for (T u : postfix_expression){
+                    case "*":
+                        // algo
+                        break;
 
-            char v = (char) u;
-            if ( Character.isDigit(v) ){
-                numeros.push(Integer.parseInt(String.valueOf(v)));
-            }
-            switch (v){
-                case '+':
-                    respuesta = numeros.pull() + numeros.pull();
-                    numeros.push(respuesta);
-                    break;
+                    case "/":
+                        // algo
+                        break;
 
-                case '-':
-                    respuesta = numeros.pull() - numeros.pull();
-                    numeros.push(respuesta);
-                    break;
+                    default:
+                        System.out.println("caracterinvalido en la linea, no se tomara en cuenta en el calculo")
 
-                case '*':
-                    respuesta = numeros.pull() * numeros.pull();
-                    numeros.push(respuesta);
-                    break;
-
-                case '/':
-                    respuesta = numeros.pull() / numeros.pull();
-                    numeros.push(respuesta);
-                    break;
-
-                case ' ':
-                    break;
-
-                default:
-                   // System.out.println("caracterinvalido en la linea, no se tomara en cuenta en el calculo");
-
-                    //dar resultado
+                        //dar resultado
 
 
                 }
 
-
             }
+        }
+        catch (){
 
-        return numeros.pull();
+        }
+        return respuesta;
     }
 
 
@@ -69,4 +56,3 @@ public class Calculadora<T> implements IPostfixCalculator<T> {
 
 
 }
-
