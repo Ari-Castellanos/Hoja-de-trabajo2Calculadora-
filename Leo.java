@@ -7,9 +7,13 @@ public class Leo {
     }
 
 
-
-    public List<String> leerArchivo(String nombreFichero){
-        List<String> lista = new ArrayList<String>();
+    /**
+     * Metodo para leer archivos de texto, los convierte en listas de strings
+     * @param nombreFichero nombre del archivo a leer
+     * @return una lista de strig donde cada strig de la lista representa una linea del archivo de texto
+     */
+    public ArrayList<String> leerArchivo(String nombreFichero){
+        ArrayList<String> lista = new ArrayList<String>();
         // Declarar una variable BufferedReader
         BufferedReader br = null;
         try {

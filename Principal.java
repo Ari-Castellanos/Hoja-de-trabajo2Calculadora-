@@ -6,11 +6,20 @@ public class Main {
         Leo leo = new Leo();
         int i = 0;
         IPostfixCalculator calculadora = new Calculadora();
-        List<String> operaciones = leo.leerArchivo("ejemplo.txt");
+        // leer el archivo
+        ArrayList<String> operaciones = leo.leerArchivo("ejemplo.txt");
+        //se recorre cada linea del archivo
         for (String operacion : operaciones) {
             i ++;
+            //se calcula expresión en formato Postfix de la linea i empieza en 1
             System.out.println("operacion " + i + ":");
-            System.out.println(calculadora.Calculate());
+            try{
+                System.out.println(calculadora.Calculate(operacion));
+            }
+            catch (Exception ex){
+                System.out.println("Error operacion invalida");
+            }
+
         }
     }
 }
