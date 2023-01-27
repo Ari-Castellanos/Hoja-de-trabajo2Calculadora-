@@ -1,12 +1,16 @@
-public class Calculadora<T> implements IPostfixCalculator {
-    private StackHandmade<int> numeros = new StackHandmade<int>();
+public class Calculadora<T> implements IPostfixCalculator<T> {
+    
 
     public Calculadora() {
 
     }
 
+    @Override
     public int Calculate(java.util.ArrayList<T> postfix_expression) throws Exception{
+
         int respuesta = 0;
+        StackHandmade<Integer> numeros = new StackHandmade<Integer>();
+
         try{
             for (T u : postfix_expression){
                 if (u instanceof String){
@@ -20,23 +24,30 @@ public class Calculadora<T> implements IPostfixCalculator {
                 }
                 switch (v){
                     case "+":
-                        // algo
+                        respuesta = numeros.pull() + numeros.pull();
+                        numeros.push(respuesta);
                         break;
 
                     case "-":
-                        // algo
+                        respuesta = numeros.pull() - numeros.pull();
+                        numeros.push(respuesta);
                         break;
 
                     case "*":
-                        // algo
+                        respuesta = numeros.pull() * numeros.pull();
+                        numeros.push(respuesta);
                         break;
 
                     case "/":
-                        // algo
+                        respuesta = numeros.pull() / numeros.pull();
+                        numeros.push(respuesta);
                         break;
+                    
+                    case " ":
+                    break;
 
                     default:
-                        System.out.println("caracterinvalido en la linea, no se tomara en cuenta en el calculo")
+                        System.out.println("caracterinvalido en la linea, no se tomara en cuenta en el calculo");
 
                         //dar resultado
 
@@ -45,9 +56,10 @@ public class Calculadora<T> implements IPostfixCalculator {
 
             }
         }
-        catch (){
+        catch (Exception ex){
 
         }
+
         return respuesta;
     }
 
